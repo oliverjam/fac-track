@@ -1,5 +1,5 @@
 {
-  "name": "pre-req-cheq",
+  "name": "fac-track",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
@@ -7,6 +7,7 @@
     "react-scripts": "^2.1.1"
   },
   "dependencies": {
+    "@reach/router": "^1.2.1",
     "cheerio": "^1.0.0-rc.2",
     "dotenv": "^6.1.0",
     "got": "^9.2.2",

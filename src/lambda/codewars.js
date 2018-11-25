@@ -8,14 +8,13 @@ export function handler(event, context, callback) {
   console.log(event);
   const URL = `https://www.codewars.com/api/v1/users/${username}`;
   const res = fetch(URL)
-    .then(
-      res =>
-        res.status !== 200
-          ? Promise.reject({
-              status: res.status,
-              message: res.statusText || 'Fetch error',
-            })
-          : res.json()
+    .then(res =>
+      res.status !== 200
+        ? Promise.reject({
+            status: res.status,
+            message: res.statusText || 'Fetch error',
+          })
+        : res.json()
     )
     .then(data => {
       console.log('=== Response ===', data);
@@ -27,7 +26,7 @@ export function handler(event, context, callback) {
     .catch(error => {
       console.error(error);
       callback(null, {
-        statusCode: error.status,
+        statusCode: error.status || 500,
         body: JSON.stringify({ message: error.message }),
       });
     });

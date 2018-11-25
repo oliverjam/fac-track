@@ -9,16 +9,15 @@ const isJson = res => {
 };
 
 const safeFetch = url =>
-  fetch(url).then(
-    res =>
-      res.status !== 200
-        ? Promise.reject({
-            status: res.status,
-            message: res.statusText || 'Fetch error',
-          })
-        : isJson(res)
-          ? res.json()
-          : res.text()
+  fetch(url).then(res =>
+    res.status !== 200
+      ? Promise.reject({
+          status: res.status,
+          message: res.statusText || 'Fetch error',
+        })
+      : isJson(res)
+      ? res.json()
+      : res.text()
   );
 
 const validHosts = [
@@ -40,6 +39,7 @@ const parseLinks = links =>
     const username = urlObj.pathname
       .replace('/', '')
       .replace('users/', '')
+      .replace('completed/', '')
       .replace('/authored', '');
     return {
       ...acc,
@@ -49,29 +49,34 @@ const parseLinks = links =>
 
 export function handler(event, context, callback) {
   const {
-    queryStringParameters: { website },
+    queryStringParameters: { site },
   } = event;
-  safeFetch(website)
+  console.log(site);
+  safeFetch(site)
     .then(html => {
       const $ = cheerio.load(html);
       const links = $('a').toArray();
       const usernames = parseLinks(links);
-      safeFetch(
-        `https://www.codewars.com/api/v1/users/${usernames.codewars.username}`
-      )
-        .then(codewars => ({ ...usernames, codewars }))
-        .then(finalData => {
-          console.log('=== Response ===', finalData);
-          callback(null, {
-            statusCode: 200,
-            body: JSON.stringify(finalData),
-          });
-        });
+      callback(null, {
+        statusCode: 200,
+        body: JSON.stringify(usernames),
+      });
+      // safeFetch(
+      //   `https://www.codewars.com/api/v1/users/${usernames.codewars.username}`
+      // )
+      //   .then(codewars => ({ ...usernames, codewars }))
+      //   .then(finalData => {
+      //     console.log('=== Response ===', finalData);
+      //     callback(null, {
+      //       statusCode: 200,
+      //       body: JSON.stringify(finalData),
+      //     });
+      //   });
     })
     .catch(error => {
       console.error(error);
       callback(null, {
-        statusCode: error.status,
+        statusCode: error.status || 500,
         body: JSON.stringify({ message: error.message }),
       });
     });
