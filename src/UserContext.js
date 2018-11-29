@@ -60,37 +60,37 @@ const testGithub = {
 };
 
 const testCodewars = {
-  username: 'helenzhou6',
-  name: 'Helen Zhou',
-  honor: 636,
-  clan: 'Founders & Coders',
-  leaderboardPosition: 15926,
-  skills: [],
-  ranks: {
-    overall: {
-      rank: -4,
-      name: '4 kyu',
-      color: 'blue',
-      score: 790,
-    },
-    languages: {
-      javascript: {
-        rank: -4,
-        name: '4 kyu',
-        color: 'blue',
-        score: 790,
-      },
-    },
-  },
-  codeChallenges: {
-    totalAuthored: 1,
-    totalCompleted: 32,
-  },
+  // username: 'helenzhou6',
+  // name: 'Helen Zhou',
+  // honor: 636,
+  // clan: 'Founders & Coders',
+  // leaderboardPosition: 15926,
+  // skills: [],
+  // ranks: {
+  //   overall: {
+  //     rank: -4,
+  //     name: '4 kyu',
+  //     color: 'blue',
+  //     score: 790,
+  //   },
+  //   languages: {
+  //     javascript: {
+  //       rank: -4,
+  //       name: '4 kyu',
+  //       color: 'blue',
+  //       score: 790,
+  //     },
+  //   },
+  // },
+  // codeChallenges: {
+  //   totalAuthored: 1,
+  //   totalCompleted: 32,
+  // },
 };
 
 const testFcc = {
-  username: 'helenzhou6',
-  completed: [],
+  // username: 'helenzhou6',
+  // completed: [],
 };
 
 export const UserContext = createContext();
