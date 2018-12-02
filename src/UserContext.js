@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react';
 import netlify from 'netlify-auth-providers';
 import { Fetch } from './utils';
-import Header from './Header';
+import PageHeader from './Header';
 
 function authWithGitHub() {
   return new Promise((resolve, reject) => {
@@ -55,7 +55,7 @@ async function checkWebsite(site) {
 const testGithub = {
   username: 'helenzhou6',
   avatar: 'https://avatars1.githubusercontent.com/u/25727036?v=4',
-  pages: ['https://helenzhou6.github.io/One-Pager'],
+  pages: ['https://helenzhou6.gitub.io/One-Pager'],
   // pages: ['https://oliverjam.github.io/bookmarkd-prototype/'],
 };
 
@@ -139,7 +139,11 @@ export function UserProvider({ children }) {
 
   return (
     <UserContext.Provider value={userState}>
-      <Header logout={logout} github={github.username} avatar={github.avatar} />
+      <PageHeader
+        logout={logout}
+        github={github.username}
+        avatar={github.avatar}
+      />
       <main style={mainStyles}>{children}</main>
     </UserContext.Provider>
   );

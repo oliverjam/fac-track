@@ -1,43 +1,45 @@
 import React from 'react';
+import styled from 'styled-components';
 
-const headerStyles = {
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  padding: '1rem',
-  backgroundColor: 'lightgreen',
-};
+const Header = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+`;
 
-const rowStyles = {
-  display: 'flex',
-  alignItems: 'center',
-};
+const Logo = styled.span`
+  font-weight: 900;
+`;
 
-const buttonStyles = {
-  background: 'none',
-  border: 0,
-  fontSize: 'inherit',
-  cursor: 'pointer',
-};
+const Row = styled.div`
+  display: flex;
+  align-items: center;
+`;
 
-const imgStyles = {
-  width: '2rem',
-  height: '2rem',
-  borderRadius: '50%',
-};
+const Button = styled.button`
+  background: none;
+  border: 0;
+  font-size: inherit;
+  cursor: pointer;
+`;
 
-function Header({ avatar, logout }) {
+const Image = styled.img`
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+`;
+
+function PageHeader({ avatar, logout }) {
   return (
-    <header style={headerStyles}>
-      <strong>FAC Track</strong>
-      <span style={rowStyles}>
-        <button onClick={logout} style={buttonStyles}>
-          Logout
-        </button>
-        <img src={avatar} alt="" style={imgStyles} />
-      </span>
-    </header>
+    <Header>
+      <Logo>FAC Track</Logo>
+      <Row>
+        <Button onClick={logout}>Logout</Button>
+        <Image src={avatar} alt="" />
+      </Row>
+    </Header>
   );
 }
 
-export default Header;
+export default PageHeader;
