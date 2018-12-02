@@ -3,7 +3,6 @@ import { useData, Fetch } from './utils';
 import { Box, Alert, Row, Input, Button } from './styles';
 
 function Codewars({ name, username = '' }) {
-  // const [username, setUsername] = useState(initialUsername);
   const [data, setData] = useState({});
   const [progress, setProgress] = useState('initial');
 
@@ -24,20 +23,8 @@ function Codewars({ name, username = '' }) {
     event.preventDefault();
     const username = event.target.codewars.value.replace('@', '');
     getData(username);
-    // setUsername(event.target.codewars.value.replace('@', ''));
   }
 
-  // const { progress, data } = useData(
-  //   `/.netlify/functions/codewars?username=${username}`
-  // );
-  // switch (progress) {
-  //   case 'initial':
-  //   case 'submitting':
-  //     return <p>Fetching {username} ...</p>;
-  //   case 'success':
-  //     return <p>{Math.abs(data.ranks.overall.rank)} kyu</p>;
-  //   case 'error':
-  //   default:
   if (progress === 'success')
     return (
       <div>
